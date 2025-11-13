@@ -31,17 +31,15 @@ public class ShoppingListService : IShoppingListService
     public ShoppingItem? Add(string name, int quantity, string? notes)
     {
         // TODO: Students - Implement this method
-        /*ShoppingItem item = new ShoppingItem
+        ShoppingItem item = new ShoppingItem
         {
-            Id = Guid.NewGuid().ToString(),
             Name = name,
             Quantity = quantity,
             Notes = notes
         };
         // Return the created item
         return item;
-        */
-        return null;
+        
     }
 
     public ShoppingItem? Update(string id, string name, int quantity, string? notes)
