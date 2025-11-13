@@ -95,6 +95,23 @@ namespace ShoppingList.Tests;
 /// </summary>
 public class ShoppingListServiceTests
 {
+
+    [Fact]
+
+    public void Add_WithValidInput_ShouldReturnItem()
+    {
+        //Arrange
+        var sut = new ShoppingListService();
+        var expectedItem = new ShoppingItem();
+
+        //Act
+        var item = new ShoppingItem();
+
+        //Assert
+        Assert.Equal(expectedItem, item);
+    }
+    
+    
     // TODO: Write your tests here following the TDD workflow
 
     // Example test structure:
