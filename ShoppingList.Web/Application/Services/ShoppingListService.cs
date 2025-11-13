@@ -19,7 +19,8 @@ public class ShoppingListService : IShoppingListService
     public IReadOnlyList<ShoppingItem> GetAll()
     {
         // TODO: Students - Return all items from the array (up to _nextIndex)
-        return [];
+        
+        return GenerateDemoItems();
     }
 
     public ShoppingItem? GetById(string id)

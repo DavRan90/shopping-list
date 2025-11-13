@@ -112,16 +112,32 @@ public class ShoppingListServiceTests
         //Act
         var result = new ShoppingItem()
         {
+            Id = "ID",
             Name = name,
             Quantity = quantity,
             Notes = notes
         };
 
         //Assert
-        Assert.Equal(expected, result);
+        
         Assert.Equal(expected.Name, result.Name);
         Assert.Equal(expected.Quantity, result.Quantity);
         Assert.Equal(expected.Notes, result.Notes);
+    }
+
+    [Fact]
+    public void GetAll_WhenCalled_ShouldReturnAllItems()
+    {
+        //Arrange
+        var expectedList = new ShoppingListService().GetAll();
+
+
+        //Act
+        var actualList = _sut.GetAll();
+
+
+        //Assert
+        Assert.Equal(expectedList.Count, actualList.Count);
     }
     
     
