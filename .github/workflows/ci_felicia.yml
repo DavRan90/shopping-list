@@ -32,5 +32,9 @@ jobs:
       - name: build
         run: dotnet build ShoppingList.sln 
 
+      - name: if build success show test
+        if: success()
+        run: dotnet test
 
-       
+
+      
