@@ -28,12 +28,12 @@ jobs:
       - name: Build Solution
         run: dotnet build ShoppingList.sln
 
-      - name: TestBuildSuccess
+      - name: BuildSuccess
         if: success()
         run: echo "Build successful" 
 
       - name: Run Tests
-        run: dotnet test --no-build
+        run: dotnet test ShoppingList.sln
 
       - name: RunTestSuccessfully
         if: success()
