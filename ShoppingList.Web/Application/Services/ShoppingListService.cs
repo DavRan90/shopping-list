@@ -86,26 +86,33 @@ public class ShoppingListService : IShoppingListService
 
     public IReadOnlyList<ShoppingItem> Search(string query)
     {
+        if (string.IsNullOrEmpty(query))
+        {
+            return _items;
+        }
         // TODO: Students - Implement this method
-        // Return the filtered items
-
-        var foundItems = new ShoppingItem[5];
-        int j = 0;
+        int count = 0;
         foreach (var item in _items)
         {
-            if (item.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase))
-            {
-                foundItems[j] = item;
-                j++;
-                // for (int i = 0; i <= _items.Length; i++)
-                // {
-                //     foundItems[i] = item;
-                // }
-            }
-            
+            if (item != null &&
+                item.Name != null &&
+                item.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase))
+                count++;
         }
-        
-        
+        // Return the filtered items
+
+        var foundItems = new ShoppingItem[count];
+        int index = 0;
+        foreach (var item in _items)
+        {
+            if (item != null &&
+                item.Name != null &&
+                item.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase))
+            {
+                foundItems[index] = item;
+                index++;
+            }
+        }
         return foundItems;
     }
 

@@ -100,9 +100,6 @@ namespace ShoppingList.Tests;
 
 public class ShoppingListServiceTests
 {
-    
-    
-    
     // TODO: Write your tests here following the TDD workflow
     
     ShoppingListService _sut = new ShoppingListService();
@@ -156,10 +153,8 @@ public class ShoppingListServiceTests
         //Arrange
         var expectedList = new ShoppingListService().GetAll();
 
-
         //Act
         var actualList = _sut.GetAll();
-
 
         //Assert
         Assert.NotNull(actualList);
@@ -179,13 +174,10 @@ public class ShoppingListServiceTests
         var item = service.GetById(id);
         
         var lastItem = service.GetById("3");
-        
     
         // Assert
         Assert.NotNull(item);
         Assert.Contains(items, i => i.Id == id);
-        
-        
     }
 
     [Fact]
@@ -208,21 +200,38 @@ public class ShoppingListServiceTests
         Assert.Equal(allItems[2].Name, "Toothpaste");
     }
 
-    // Example test structure:
-    // [Fact]
-    // public void Add_WithValidInput_ShouldReturnItem()
-    // {
-    //     // Arrange
-    //     var service = new ShoppingListService();
-    //
-    //     // Act
-    //     var item = service.Add("Milk", 2, "Lactose-free");
-    //
-    //     // Assert
-    //     Assert.NotNull(item);
-    //     Assert.Equal("Milk", item!.Name);
-    //     Assert.Equal(2, item.Quantity);
-    // }
+
+    [Theory]
+    [InlineData("app")]
+    [InlineData("to")]
+    [InlineData("dis")]
+    //Hittas inte
+    //[InlineData("afsajfjasfjasj")]
+
+    public void Search_ByString_ShouldReturnCorrectItems(string search)
+    {
+        //Arrange
+        var service = new ShoppingListService();
+        var expected = 1;
+        // tom lista att jämföra med
+        //var expectedItems = new ShoppingItem[5];
+        
+
+        //Act
+        var foundItems = service.Search(search);
+
+        //Assert
+        Assert.True(foundItems.Count >= expected);
+        // För att testa vilka items den hittar
+        //Assert.Equal(foundItems, expectedItems);
+
+    }
+    
+    
+    
+    
+    
+    // Alternativ
     [Theory]
     [InlineData(2)]
     public void GetAll_ShouldGetCorrectAmountOfItems(int expected)
@@ -244,33 +253,6 @@ public class ShoppingListServiceTests
         //Assert
         Assert.Equal(expected, actualItems.Length);
     }
-
-
-        [Theory]
-        [InlineData("app")]
-        [InlineData("to")]
-        [InlineData("dis")]
-    
-
-    public void Search_ByString_ShouldReturnCorrectItems(string search)
-    {
-        //Arrange
-        var  service = new ShoppingListService();
-        
-        var allItems = service.GetAll();
-        
-
-        //Act
-        var foundItems = service.Search(search);
-
-        //Assert
-        Assert.NotNull(foundItems);
-        
-
-    }
-    
-    
-    
     private void GenerateDemoItems(IShoppingListService service)
     {
         var items = new ShoppingItem[5];
