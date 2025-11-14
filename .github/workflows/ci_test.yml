@@ -20,7 +20,7 @@ jobs:
       - name: Print GitHub context
         run: |
           echo "${{ github.event_name }}"
-          echo "${{ github.events.commits[0].author.name }}"
-          echo "${{ github.events.commits[0].message }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.event.commits[0].message }}"
           echo "${{ toJSON(github) }}"
           
