@@ -17,6 +17,9 @@ jobs:
         version: [9.0, 8.0]
     
     steps:
+      - name: Print GitHub context
+        run: echo "${{ toJSON(github) }}"
+        
       - name: Checkout repository
         uses: actions/checkout@v5
 
