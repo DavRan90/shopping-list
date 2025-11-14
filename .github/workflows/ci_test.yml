@@ -1,13 +1,20 @@
-name: Test
-
+name: Workflow
+  
 on:
   workflow_dispatch:
-
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
+  runworkflow:
+    runs-on: $ {{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        version: [9.0, 8.0]
     steps:
-      - name: WriteTest
-        run: echo "Just trying"
-    
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: TestBuildSuccess
+        if: success()
+        run: echo "Checkout successful" 
+          
+      
