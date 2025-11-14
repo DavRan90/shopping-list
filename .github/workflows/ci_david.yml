@@ -39,9 +39,6 @@ jobs:
           echo "This was manually started"
           echo "Started by: ${{ github.actor }}"
           echo "Input is ${{ github.event.inputs.level }}, "
-          
-      - name: Print GitHub context
-        run: echo "${{ toJSON(github) }}"
         
       - name: Checkout repository
         uses: actions/checkout@v5
