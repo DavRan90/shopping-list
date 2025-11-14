@@ -36,10 +36,12 @@ jobs:
         if: success()
         run: dotnet test
 
-      - name: on push
-        if: push
+      - name: print github context
         run: |
           echo "${{ github.event_name}}"
+          echo "${{ github.event.commits[0].author.name}}
+          echo "${{ github.event.commits[0].message}}
+          echo "${{ toJSON(github)}}"
           
         
 
