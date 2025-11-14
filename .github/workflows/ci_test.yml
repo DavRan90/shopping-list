@@ -23,7 +23,7 @@ jobs:
     
     steps:
       - name: Print Push
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name }} == 'push'
         run: |
           echo "This was a push"
           echo "${{ github.event.commits[0].author.name }}"
