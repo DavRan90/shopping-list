@@ -17,6 +17,11 @@ jobs:
         version: [9.0, 8.0]
     
     steps:
+      - name: Print Push
+        if: ${{ github.event_name }} == "push"
+        run:
+          echo "This was a push"
+        
       - name: Print GitHub context
         run: |
           echo "${{ github.event_name }}"
