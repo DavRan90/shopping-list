@@ -33,8 +33,10 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           echo "This was a pull request"
-          echo "${{ github.event.commits[0].author.name }}"
-          echo "${{ github.event.commits[0].message }}"
+          echo "Event number: ${{ github.event.number }}"
+          echo "Action run by: ${{ github.actor }}"
+          echo "Source branch: ${{ github.head_ref }}"
+          echo "Target branch: ${{ github.base_ref }}"
 
       - name: Print Manual
         if: github.event_name == 'workflow_dispatch'
@@ -42,8 +44,6 @@ jobs:
           echo "This was manually started"
           echo "Started by: ${{ github.actor }}"
           echo "Input is ${{ github.event.inputs.level }}, "
-        
-        
         
       - name: Print GitHub context
         run: |
