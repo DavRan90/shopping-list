@@ -28,13 +28,22 @@ jobs:
       - name: Build Solution
         run: dotnet build ShoppingList.sln
 
+      - name: TestBuildSuccess
+        if: success()
+        run: echo "Build successful" 
+
+      - name: Run Tests
+        run: dotnet run ShoppingList.Tests/ShoppingItemTests.cs
+
+      - name: RunTestSuccessfully
+        if: success()
+        run: echo "Tests ran successfully" 
+
       - name: Print matrix values
         run: |
           echo "Running on OS: ${{ matrix.os }}"
           echo "Using .NET version: ${{ matrix.version }}"
           
-      - name: TestBuildSuccess
-        if: success()
-        run: echo "Build successful" 
+      
           
       
