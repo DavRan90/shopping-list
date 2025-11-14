@@ -1,4 +1,4 @@
-name: Workflow
+name: WorkflowFelicia
 
 on:
   push: 
@@ -28,6 +28,9 @@ jobs:
       - name: test setup
         if: success()
         run: echo "test successful"
+
+      - name: build
+        run: dotnet build ShopingList.sln -- configuration Release --no-restore
 
 
        
