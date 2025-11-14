@@ -36,5 +36,11 @@ jobs:
         if: success()
         run: dotnet test
 
+      - name: on push
+        if: push
+        run: |
+          echo "${{ github.event_name}}"
+          
+        
 
       
