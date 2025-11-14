@@ -2,6 +2,11 @@ name: WorkflowTest
   
 on:
   workflow_dispatch:
+    inputs:
+      level:
+        description: 'Ange ett nivåvärde'
+        required: true
+        type: string
   push:
     branches:
       - main
@@ -19,8 +24,25 @@ jobs:
     steps:
       - name: Print Push
         if: ${{ github.event_name }} == "push"
-        run:
+        run: |
           echo "This was a push"
+          echo "${{ github.event.commits[0].author.name }}"
+          echo "${{ github.event.commits[0].message }}"
+
+      - name: Print PR
+        if: ${{ github.event_name }} == "pull_request"
+        run: |
+          echo "This was a pull request"
+          echo "${{ github.event.commits[0].author.name }}"
+          echo "${{ github.event.commits[0].message }}"
+
+      - name: Print Manual
+        if: ${{ github.event_name }} == "workflow_dispatch"
+        run: |
+          echo "This was manually started"
+          echo "Nivå är ${{ github.event.inputs.level }}, jobbet körs"
+        
+        
         
       - name: Print GitHub context
         run: |
