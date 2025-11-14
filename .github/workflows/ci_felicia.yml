@@ -30,7 +30,7 @@ jobs:
         run: echo "test successful"
 
       - name: build
-        run: dotnet build ShopingList.sln -- configuration Release --no-restore
+        run: dotnet build ShoppingList.sln 
 
 
        
