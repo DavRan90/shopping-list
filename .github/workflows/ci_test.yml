@@ -40,7 +40,8 @@ jobs:
         if: ${{ github.event_name }} == "workflow_dispatch"
         run: |
           echo "This was manually started"
-          echo "Nivå är ${{ github.event.inputs.level }}, jobbet körs"
+          echo "Started by: ${{ github.actor }}"
+          echo "Input is ${{ github.event.inputs.level }}, "
         
         
         
